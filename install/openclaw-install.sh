@@ -18,10 +18,16 @@ $STD apt-get install -y \
   git \
   python3 \
   openssl \
-  procps
+  procps \
+  ca-certificates \
+  curl \
+  gnupg
 msg_ok "Installed Dependencies"
 
-NODE_VERSION="24" setup_nodejs
+msg_info "Installing Node.js 24"
+$STD curl -fsSL https://deb.nodesource.com/setup_24.x | bash -
+$STD apt-get install -y nodejs
+msg_ok "Installed Node.js $(node -v)"
 
 msg_info "Installing OpenClaw"
 $STD npm install -g openclaw@latest
