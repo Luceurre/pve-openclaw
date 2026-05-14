@@ -46,6 +46,7 @@ cat <<EOF >/root/.openclaw/openclaw.json
 EOF
 msg_ok "Configured OpenClaw"
 
+OPENCLAW_BIN=$(command -v openclaw)
 msg_info "Creating Service"
 cat <<EOF >/etc/systemd/system/openclaw.service
 [Unit]
@@ -54,7 +55,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/openclaw gateway --bind lan --port 18789 --allow-unconfigured
+ExecStart=${OPENCLAW_BIN} gateway --bind lan --port 18789 --allow-unconfigured
 Restart=on-failure
 RestartSec=10
 Environment=HOME=/root
