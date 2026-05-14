@@ -56,7 +56,7 @@ After=network.target
 [Service]
 Type=simple
 ExecStart=${OPENCLAW_BIN} gateway --bind lan --port 18789 --allow-unconfigured
-Restart=on-failure
+Restart=always
 RestartSec=10
 Environment=HOME=/root
 Environment=NODE_ENV=production
